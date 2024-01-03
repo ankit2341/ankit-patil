@@ -9,15 +9,15 @@ export default function Home() {
   }
 
   useEffect(() => {
-    let elts: Elements;
+    let textNodes: Elements;
 
     if (typeof document !== "undefined") {
-      elts = {
+      textNodes = {
         text1: document.getElementById("text1"),
         text2: document.getElementById("text2"),
       };
     } else {
-      elts = {
+      textNodes = {
         text1: null,
         text2: null,
       };
@@ -34,9 +34,9 @@ export default function Home() {
     let cooldown = cooldownTime;
     let animationFrameId: number | undefined;
 
-    if (elts.text1 && elts.text2) {
-      elts.text1.textContent = texts[textIndex % texts.length];
-      elts.text2.textContent = texts[(textIndex + 1) % texts.length];
+    if (textNodes.text1 && textNodes.text2) {
+      textNodes.text1.textContent = texts[textIndex % texts.length];
+      textNodes.text2.textContent = texts[(textIndex + 1) % texts.length];
     }
 
     function doMorph() {
@@ -54,35 +54,35 @@ export default function Home() {
     }
 
     function setMorph(fraction: number) {
-      if (elts.text2) {
-        elts.text2.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
-        elts.text2.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
+      if (textNodes.text2) {
+        textNodes.text2.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
+        textNodes.text2.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
       }
 
       fraction = 1 - fraction;
-      if (elts.text1) {
-        elts.text1.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
-        elts.text1.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
+      if (textNodes.text1) {
+        textNodes.text1.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
+        textNodes.text1.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
 
-        elts.text1.textContent = texts[textIndex % texts.length];
+        textNodes.text1.textContent = texts[textIndex % texts.length];
       }
 
-      if (elts.text2) {
-        elts.text2.textContent = texts[(textIndex + 1) % texts.length];
+      if (textNodes.text2) {
+        textNodes.text2.textContent = texts[(textIndex + 1) % texts.length];
       }
     }
 
     function doCooldown() {
       morph = 0;
 
-      if (elts.text2) {
-        elts.text2.style.filter = "";
-        elts.text2.style.opacity = "100%";
+      if (textNodes.text2) {
+        textNodes.text2.style.filter = "";
+        textNodes.text2.style.opacity = "100%";
       }
 
-      if (elts.text1) {
-        elts.text1.style.filter = "";
-        elts.text1.style.opacity = "0%";
+      if (textNodes.text1) {
+        textNodes.text1.style.filter = "";
+        textNodes.text1.style.opacity = "0%";
       }
     }
 
