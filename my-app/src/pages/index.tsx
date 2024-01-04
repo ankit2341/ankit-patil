@@ -1,6 +1,7 @@
-import { Box, Flex, VStack } from "@chakra-ui/react";
+import { Box, Center, Flex, Link, Text, VStack } from "@chakra-ui/react";
 
 import { useEffect } from "react";
+import VelocityText from "src/features/components/velocityText";
 
 export default function Home() {
   interface Elements {
@@ -23,7 +24,12 @@ export default function Home() {
       };
     }
 
-    const texts: string[] = ["Ankit", "Patil", "Portfolio", "Coming", "Soon"];
+    const texts: string[] = [
+      "Full stack developer",
+      "Frontend developer",
+      "Web developer",
+      "React native developer",
+    ];
 
     const morphTime = 1;
     const cooldownTime = 0.25;
@@ -55,13 +61,19 @@ export default function Home() {
 
     function setMorph(fraction: number) {
       if (textNodes.text2) {
-        textNodes.text2.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
+        textNodes.text2.style.filter = `blur(${Math.min(
+          8 / fraction - 8,
+          100,
+        )}px)`;
         textNodes.text2.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
       }
 
       fraction = 1 - fraction;
       if (textNodes.text1) {
-        textNodes.text1.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
+        textNodes.text1.style.filter = `blur(${Math.min(
+          8 / fraction - 8,
+          100,
+        )}px)`;
         textNodes.text1.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
 
         textNodes.text1.textContent = texts[textIndex % texts.length];
@@ -119,34 +131,110 @@ export default function Home() {
   }, []);
 
   return (
-    <Flex
-      width="100vw"
-      height="100vh"
-      alignItems="center"
-      justifyContent="center"
-      border="1px solid"
-    >
-      <VStack>
-        <Box id="container">
-          <span color="#9452ff" id="text1"></span>
-          <span color="#9452ff" id="text2"></span>
+    <Box maxW="100vw" overflowX="hidden" overflowY="scroll">
+        <div className="area">
+        <ul className="circles">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+      <Flex
+        px="2"
+        width="100%"
+        height="10vh"
+        zIndex={100}
+        position="fixed"
+        top="0"
+        left="0"
+        right="0"
+        boxShadow="#9452ff 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;"
+      >
+        <Box
+          display="flex"
+          alignItems="center"
+          justifyContent="left"
+          width="49%"
+          height="100%"
+        >
+          <Text
+            className="title_text"
+            fontWeight="bold"
+            textAlign="center"
+            fontSize="x-large"
+          >
+            <span style={{ color: "#9252ff" }}>A</span>nkit{" "}
+            <span style={{ color: "#9452ff" }}>P</span>atil
+          </Text>
         </Box>
+        <Flex width="49%">
+          <Link href="/projects">project</Link>
+        </Flex>
+      </Flex>
+      <Flex width="100%" height="100vh" overflowX="hidden">
+        <Center h="100%" w="49%" color="white">
+          <Box className="bulb-container">
+            <Box className="wire"></Box>
+            <Box className="connector">
+              <Box className="grove"></Box>
+              <Box className="grove"></Box>
+              <Box className="grove"></Box>
+            </Box>
+            <Box className="bulb">
+              <Box className="metal-wire"></Box>
+              <Box className="metal-wire"></Box>
+              <Box className="metal-wire"></Box>
+            </Box>
+          </Box>
+        </Center>
+        <Flex
+          width="50%"
+          height="100%"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <VStack>
+            <Text fontSize="x-large">I am a</Text>
+            <Box id="container">
+              <Text
+                color="brand.primary"
+                fontSize="xxx-large"
+                id="text1"
+              ></Text>
+              <Text
+                color="brand.primary"
+                fontSize="xxx-large"
+                id="text2"
+              ></Text>
+            </Box>
 
-        <svg id="filters">
-          <defs>
-            <filter id="threshold">
-              <feColorMatrix
-                in="SourceGraphic"
-                type="matrix"
-                values="1 0 0 0 0
+            <svg id="filters">
+              <defs>
+                <filter id="threshold">
+                  <feColorMatrix
+                    in="SourceGraphic"
+                    type="matrix"
+                    values="1 0 0 0 0
                   0 1 0 0 0
                   0 0 1 0 0
                   0 0 0 255 -140"
-              />
-            </filter>
-          </defs>
-        </svg>
-      </VStack>
-    </Flex>
+                  />
+                </filter>
+              </defs>
+            </svg>
+          </VStack>
+        </Flex>
+      </Flex>
+    
+    
+     
+    </Box>
   );
 }

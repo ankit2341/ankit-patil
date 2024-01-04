@@ -6,6 +6,7 @@ import "../styles/landing.css";
 import Head from "next/head";
 import { NextPage, NextPageContext } from "next";
 import { ReactElement, ReactNode } from "react";
+
 export type NextPageWithLayout<P = unknown, IP = NextPageContext> = NextPage<
   P,
   IP
