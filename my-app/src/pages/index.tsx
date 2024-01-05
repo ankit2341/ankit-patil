@@ -5,8 +5,11 @@ import {
   Flex,
   Text,
   VStack,
+  keyframes,
   useBreakpointValue,
 } from "@chakra-ui/react";
+import { faBinoculars } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { useEffect } from "react";
 import { NavBar } from "src/features/components/NavBar";
@@ -138,6 +141,19 @@ export default function Home() {
     };
   }, []);
 
+  const shakeAnimation = keyframes`
+0% { transform: translateX(0); }
+25% { transform: translateX(-5px) rotate(5deg); }
+50% { transform: translateX(5px) rotate(-5deg); }
+75% { transform: translateX(-5px) rotate(5deg); }
+100% { transform: translateX(0); }
+`;
+
+  const scaleAnimation = keyframes`
+0%, 100% { transform: scale(1); }
+50% { transform: scale(1.2); }
+`;
+
   const isMobile = useBreakpointValue({
     base: true,
     sm: false,
@@ -159,6 +175,7 @@ export default function Home() {
           h={isMobile ? "50%" : "100%"}
           w={isMobile ? "100%" : "49%"}
           color="white"
+          overflow={"hidden"}
         >
           <Box className="bulb-container">
             <Box className="wire" height={isMobile ? "20%" : "50%"}></Box>
@@ -177,10 +194,11 @@ export default function Home() {
         <Flex
           width={!isMobile ? "50%" : "100%"}
           height={isMobile ? "50%" : "100%"}
+          overflow={"hidden"}
           alignItems="center"
           justifyContent="center"
         >
-          <VStack>
+          <VStack alignItems="center" justifyContent="center">
             <Text fontSize="x-large" fontWeight="semibold">
               I am a
             </Text>
@@ -196,7 +214,17 @@ export default function Home() {
                 id="text2"
               ></Text>
             </Box>
-
+            <Button
+              bg="brand.primary"
+              _hover={{ color: "brand.font" }}
+              mt="80px"
+              width="20%"
+              height="50px"
+              fontSize="large"
+              color="white"
+            >
+              Download Resume
+            </Button>
             <svg id="filters">
               <defs>
                 <filter id="threshold">
@@ -211,7 +239,20 @@ export default function Home() {
                 </filter>
               </defs>
             </svg>
-            <Button bg="brand.primary">Download Resume</Button>
+            <Box
+              display="inline-block"
+              cursor="pointer"
+              _hover={{
+                animation: `${shakeAnimation} 0.5s ease-in-out infinite, ${scaleAnimation} 0.5s ease-in-out infinite`,
+              }}
+            >
+              <FontAwesomeIcon
+                icon={faBinoculars}
+                title="Explore"
+                shake
+                size="2xl"
+              />
+            </Box>
           </VStack>
         </Flex>
       </Flex>
