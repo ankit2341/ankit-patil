@@ -1,10 +1,6 @@
 #container {
-  position: absolute;
   margin: auto;
   width: 100vw;
-  height: 80pt;
-  top: 0;
-  bottom: 0;
   filter: url(#threshold) blur(0.6px);
 }
 
@@ -30,8 +26,7 @@
 }
 .wire {
   width: 4px;
-  height: 50%;
-  background: black;
+  background: #9452ff;
   position: relative;
   z-index: 1;
 }
@@ -238,7 +233,9 @@
 .context {
   width: 100%;
   position: absolute;
-  top: 50vh;
+  top: 100vh;
+  border: 1px solid black;
+  z-index: -1;
 }
 
 .context h1 {
@@ -358,7 +355,7 @@
 }
 
 /* --------------preojects-------------- */
-
+/* 
 h1 {
   font-size: 56px;
   font-weight: 700;
@@ -377,9 +374,9 @@ h2 {
   letter-spacing: -3px;
   line-height: 1.2;
   position: absolute;
-}
+} */
 
-section {
+/* section {
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -409,4 +406,37 @@ img {
   height: 100%;
 }
 
+.inactive {
+  clip-path: circle(0% at 100% 0);
+}
 
+.active {
+  clip-path: circle(75%);
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  text-rendering: optimizeLegibility;
+} */
+
+.tag-cloud {
+  cursor: pointer;
+  margin-top: 100px;
+  position: relative;
+}
+
+.tag-cloud__item {
+  font-weight: 800;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform-origin: 50% 50%;
+  transition: all 0.1s;
+  will-change: transform, opacity, filter;
+}
+/* --flipping cards -------------- */
+
+.transition {
+  transition: 0.3s cubic-bezier(0.3, 0, 0, 1.3);
+}

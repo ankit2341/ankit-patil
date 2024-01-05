@@ -1,7 +1,15 @@
-import { Box, Center, Flex, Link, Text, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Center,
+  Flex,
+  Text,
+  VStack,
+  useBreakpointValue,
+} from "@chakra-ui/react";
 
 import { useEffect } from "react";
-import VelocityText from "src/features/components/velocityText";
+import { NavBar } from "src/features/components/NavBar";
 
 export default function Home() {
   interface Elements {
@@ -130,58 +138,30 @@ export default function Home() {
     };
   }, []);
 
+  const isMobile = useBreakpointValue({
+    base: true,
+    sm: false,
+    md: false,
+    lg: false,
+    xl: false,
+  });
+
   return (
-    <Box maxW="100vw" overflowX="hidden" overflowY="scroll">
-        <div className="area">
-        <ul className="circles">
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
-      </div>
+    <Box minW="100vw" overflow="hidden">
+      <NavBar />
       <Flex
-        px="2"
         width="100%"
-        height="10vh"
-        zIndex={100}
-        position="fixed"
-        top="0"
-        left="0"
-        right="0"
-        boxShadow="#9452ff 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;"
+        height={"100vh"}
+        overflow="hidden"
+        flexDir={!isMobile ? "row" : "column"}
       >
-        <Box
-          display="flex"
-          alignItems="center"
-          justifyContent="left"
-          width="49%"
-          height="100%"
+        <Center
+          h={isMobile ? "50%" : "100%"}
+          w={isMobile ? "100%" : "49%"}
+          color="white"
         >
-          <Text
-            className="title_text"
-            fontWeight="bold"
-            textAlign="center"
-            fontSize="x-large"
-          >
-            <span style={{ color: "#9252ff" }}>A</span>nkit{" "}
-            <span style={{ color: "#9452ff" }}>P</span>atil
-          </Text>
-        </Box>
-        <Flex width="49%">
-          <Link href="/projects">project</Link>
-        </Flex>
-      </Flex>
-      <Flex width="100%" height="100vh" overflowX="hidden">
-        <Center h="100%" w="49%" color="white">
           <Box className="bulb-container">
-            <Box className="wire"></Box>
+            <Box className="wire" height={isMobile ? "20%" : "50%"}></Box>
             <Box className="connector">
               <Box className="grove"></Box>
               <Box className="grove"></Box>
@@ -195,13 +175,15 @@ export default function Home() {
           </Box>
         </Center>
         <Flex
-          width="50%"
-          height="100%"
+          width={!isMobile ? "50%" : "100%"}
+          height={isMobile ? "50%" : "100%"}
           alignItems="center"
           justifyContent="center"
         >
           <VStack>
-            <Text fontSize="x-large">I am a</Text>
+            <Text fontSize="x-large" fontWeight="semibold">
+              I am a
+            </Text>
             <Box id="container">
               <Text
                 color="brand.primary"
@@ -229,12 +211,10 @@ export default function Home() {
                 </filter>
               </defs>
             </svg>
+            <Button bg="brand.primary">Download Resume</Button>
           </VStack>
         </Flex>
       </Flex>
-    
-    
-     
     </Box>
   );
 }

@@ -1,49 +1,79 @@
-import { Box, Grid, GridItem, SimpleGrid, Text, VStack } from "@chakra-ui/react";
-import { Variants, motion, useScroll, useSpring } from "framer-motion";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { Box, Flex, SimpleGrid, Text } from "@chakra-ui/react";
+import { useState } from "react";
 
-const Projects = () => {
-  const router = useRouter();
-  const [isVisible, setIsVisible] = useState(true);
-  const { scrollYProgress } = useScroll();
- 
+import { NavBar } from "src/features/components/NavBar";
 
-  useEffect(() => {
-    if (router.pathname === "/projects") {
-      // Show the overlay when the route changes
-      setIsVisible(true);
-
-      // Hide the overlay after animation completes
-      const timeout = setTimeout(() => {
-        setIsVisible(false);
-      }, 1000); // Duration of your animation in milliseconds
-
-      return () => clearTimeout(timeout);
-    }
-  }, [router.pathname]);
+const SimpleCard = ({ id }: { id: number }) => {
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <>
-      {isVisible ? (
-        <motion.div
-          initial={{ scaleX: 0, transformOrigin: "left" }}
-          animate={{
-            scaleX: [0, 1, 0],
-            transformOrigin: ["left", "left", "right"], // Change transformOrigin for each keyframe
-            transition: { duration: 1, ease: "linear" },
-          }}
-          style={{
-            backgroundColor: "#9452ff",
-            height: "100vh",
-          }}
-        ></motion.div>
-      ) : (
-        <VStack>
-            
-        </VStack>
+    <Box
+      className="transition"
+      w="100%"
+      h="400px"
+      bg="white"
+      borderRadius="md"
+      boxShadow="md"
+      transition="transform 0.3s ease-in-out"
+      transform={"matrix(1, 0.5, -0.5, 1, 0, 0)"}
+      _hover={{
+        transform: `matrix(1, 0, 0, 1, 0, 0) scale(1.5) ${
+          id === 4
+            ? "translate(-20%, 0%)"
+            : id === 0
+              ? "translate(20%, 0%)"
+              : ""
+        }`,
+        zIndex: "1000",
+      }}
+      position="relative"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <Text p={4}>Your Card Content</Text>
+      {isHovered && (
+        <Text
+          p={4}
+          opacity={0}
+          transition="opacity 0.3s ease-in-out"
+          style={{ opacity: 1 }}
+        >
+         opened
+        </Text>
       )}
-    </>
+    </Box>
+  );
+};
+
+const Projects = () => {
+  return (
+    <Box minW="100vw" maxW="100vh" overflow="hidden">
+      <NavBar />
+      <Flex
+        px="5"
+        width="100%"
+        height="10vh"
+        top="0"
+        bg="white"
+        left="0"
+        right="0"
+      ></Flex>
+
+      <SimpleGrid
+        p="4"
+        width="100vw"
+        alignItems="center"
+        justifyContent="center"
+        height="90vh"
+        columns={[1, 3, 5]}
+        spacing={10}
+        overflow={"hidden"}
+      >
+        {[1, 2, 3, 4, 5].map((image, i) => (
+          <SimpleCard key={i} id={i} />
+        ))}
+      </SimpleGrid>
+    </Box>
   );
 };
 
