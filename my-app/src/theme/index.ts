@@ -2,7 +2,8 @@ import { extendTheme } from "@chakra-ui/react";
 import { Nunito } from "next/font/google";
 
 export const nunito = Nunito({ subsets: ["latin"] });
-export const fontColor = "rgba(54, 71, 98, 1)";
+// export const fontColor = "rgba(54, 71, 98, 1)";
+export const fontColor = "black";
 export const fontColorLight = "rgba(126, 138, 158, 1)";
 
 export const theme = extendTheme({
@@ -29,13 +30,4 @@ export const theme = extendTheme({
       },
     },
   },
-  //   components: {
-  //     Checkbox: {
-  //       baseStyle: {
-  //         control: {
-  //           bg: "white",
-  //         },
-  //       },
-  //     },
-  //   },
 });

@@ -1,260 +1,41 @@
-import {
-  Box,
-  Button,
-  Center,
-  Flex,
-  Text,
-  VStack,
-  keyframes,
-  useBreakpointValue,
-} from "@chakra-ui/react";
-import { faBinoculars } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Box, Flex } from "@chakra-ui/react";
 
-import { useEffect } from "react";
 import { NavBar } from "src/features/components/NavBar";
 
 export default function Home() {
-  interface Elements {
-    text1: HTMLElement | null;
-    text2: HTMLElement | null;
-  }
-
-  useEffect(() => {
-    let textNodes: Elements;
-
-    if (typeof document !== "undefined") {
-      textNodes = {
-        text1: document.getElementById("text1"),
-        text2: document.getElementById("text2"),
-      };
-    } else {
-      textNodes = {
-        text1: null,
-        text2: null,
-      };
-    }
-
-    const texts: string[] = [
-      "Full stack developer",
-      "Frontend developer",
-      "Web developer",
-      "React native developer",
-    ];
-
-    const morphTime = 1;
-    const cooldownTime = 0.25;
-
-    let textIndex = texts.length - 1;
-    let time = new Date();
-    let morph = 0;
-    let cooldown = cooldownTime;
-    let animationFrameId: number | undefined;
-
-    if (textNodes.text1 && textNodes.text2) {
-      textNodes.text1.textContent = texts[textIndex % texts.length];
-      textNodes.text2.textContent = texts[(textIndex + 1) % texts.length];
-    }
-
-    function doMorph() {
-      morph -= cooldown;
-      cooldown = 0;
-
-      let fraction = morph / morphTime;
-
-      if (fraction > 1) {
-        cooldown = cooldownTime;
-        fraction = 1;
-      }
-
-      setMorph(fraction);
-    }
-
-    function setMorph(fraction: number) {
-      if (textNodes.text2) {
-        textNodes.text2.style.filter = `blur(${Math.min(
-          8 / fraction - 8,
-          100,
-        )}px)`;
-        textNodes.text2.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
-      }
-
-      fraction = 1 - fraction;
-      if (textNodes.text1) {
-        textNodes.text1.style.filter = `blur(${Math.min(
-          8 / fraction - 8,
-          100,
-        )}px)`;
-        textNodes.text1.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
-
-        textNodes.text1.textContent = texts[textIndex % texts.length];
-      }
-
-      if (textNodes.text2) {
-        textNodes.text2.textContent = texts[(textIndex + 1) % texts.length];
-      }
-    }
-
-    function doCooldown() {
-      morph = 0;
-
-      if (textNodes.text2) {
-        textNodes.text2.style.filter = "";
-        textNodes.text2.style.opacity = "100%";
-      }
-
-      if (textNodes.text1) {
-        textNodes.text1.style.filter = "";
-        textNodes.text1.style.opacity = "0%";
-      }
-    }
-
-    function animate() {
-      animationFrameId = requestAnimationFrame(animate);
-
-      const newTime = new Date();
-      const shouldIncrementIndex = cooldown > 0;
-      const dt = (newTime.getTime() - time.getTime()) / 1000;
-      time = newTime;
-
-      cooldown -= dt;
-
-      if (cooldown <= 0) {
-        if (shouldIncrementIndex) {
-          textIndex++;
-        }
-
-        doMorph();
-      } else {
-        doCooldown();
-      }
-    }
-
-    animate();
-
-    // Cleanup function
-    return () => {
-      // Stop the animation when the component is unmounted
-      if (animationFrameId) {
-        cancelAnimationFrame(animationFrameId);
-      }
-    };
-  }, []);
-
-  const shakeAnimation = keyframes`
-0% { transform: translateX(0); }
-25% { transform: translateX(-5px) rotate(5deg); }
-50% { transform: translateX(5px) rotate(-5deg); }
-75% { transform: translateX(-5px) rotate(5deg); }
-100% { transform: translateX(0); }
-`;
-
-  const scaleAnimation = keyframes`
-0%, 100% { transform: scale(1); }
-50% { transform: scale(1.2); }
-`;
-
-  const isMobile = useBreakpointValue({
-    base: true,
-    sm: false,
-    md: false,
-    lg: false,
-    xl: false,
-  });
+  // const isMobile = useBreakpointValue({
+  //   base: true,
+  //   sm: false,
+  //   md: false,
+  //   lg: false,
+  //   xl: false,
+  // });
 
   return (
     <Box minW="100vw" overflow="hidden">
       <NavBar />
       <Flex
-        width="100%"
+        width={"100%"}
         height={"100vh"}
-        overflow="hidden"
-        flexDir={!isMobile ? "row" : "column"}
+        overflow={"hidden"}
+        alignItems="center"
+        justifyContent="center"
       >
-        <Center
-          h={isMobile ? "50%" : "100%"}
-          w={isMobile ? "100%" : "49%"}
-          color="white"
-          overflow={"hidden"}
+        <svg
+          width="321"
+          height="203"
+          viewBox="0 0 321 203"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <Box className="bulb-container">
-            <Box className="wire" height={isMobile ? "20%" : "50%"}></Box>
-            <Box className="connector">
-              <Box className="grove"></Box>
-              <Box className="grove"></Box>
-              <Box className="grove"></Box>
-            </Box>
-            <Box className="bulb">
-              <Box className="metal-wire"></Box>
-              <Box className="metal-wire"></Box>
-              <Box className="metal-wire"></Box>
-            </Box>
-          </Box>
-        </Center>
-        <Flex
-          width={!isMobile ? "50%" : "100%"}
-          height={isMobile ? "50%" : "100%"}
-          overflow={"hidden"}
-          alignItems="center"
-          justifyContent="center"
-        >
-          <VStack alignItems="center" justifyContent="center">
-            <Text fontSize="x-large" fontWeight="semibold">
-              I am a
-            </Text>
-            <Box id="container">
-              <Text
-                color="brand.primary"
-                fontSize="xxx-large"
-                id="text1"
-              ></Text>
-              <Text
-                color="brand.primary"
-                fontSize="xxx-large"
-                id="text2"
-              ></Text>
-            </Box>
-            <Button
-              bg="brand.primary"
-              _hover={{ color: "brand.font" }}
-              mt="80px"
-              width="20%"
-              height="50px"
-              fontSize="large"
-              color="white"
-            >
-              Download Resume
-            </Button>
-            <svg id="filters">
-              <defs>
-                <filter id="threshold">
-                  <feColorMatrix
-                    in="SourceGraphic"
-                    type="matrix"
-                    values="1 0 0 0 0
-                  0 1 0 0 0
-                  0 0 1 0 0
-                  0 0 0 255 -140"
-                  />
-                </filter>
-              </defs>
-            </svg>
-            <Box
-              display="inline-block"
-              cursor="pointer"
-              _hover={{
-                animation: `${shakeAnimation} 0.5s ease-in-out infinite, ${scaleAnimation} 0.5s ease-in-out infinite`,
-              }}
-            >
-              <FontAwesomeIcon
-                icon={faBinoculars}
-                title="Explore"
-                shake
-                size="2xl"
-              />
-            </Box>
-          </VStack>
-        </Flex>
+          <path
+            id="signature"
+            d="M2 189C21.5944 176.038 39.3602 160.144 57 144.722C86.0395 119.333 113.931 93.9862 132.778 59.8889C140.501 45.9166 146.736 31.0336 150.333 15.4445C150.357 15.3398 152.526 2.44446 152 2.44446C150.1 2.44446 150.295 5.86056 149.167 7.3889C140.723 18.8282 132.154 30.1772 123.556 41.5C102.724 68.9316 89.2186 101.684 85 135.889C82.8166 153.592 82.2788 168.425 89.3889 184.833C93.2184 193.671 97.8232 178.237 99.6667 175C103.852 167.65 109.035 160.864 113.722 153.833C119.414 145.295 123.596 135.944 129.611 127.556C141.089 111.551 155.298 96.0932 173.556 87.6667C177.055 86.0517 171.02 91.8442 170.611 92.1111C158.021 100.322 143.481 106.209 129.556 111.667C119.842 115.473 109.932 118.916 100 122.111C95.9441 123.416 96.1544 123.975 97.8889 128.111C100.711 134.842 106.376 138.669 111.944 143C115.34 145.641 122.047 148.85 124.444 152.556C129.001 159.598 126 174.203 126 181.889C126 186.14 125.405 190.938 126.056 195.167C127.018 201.42 131.688 183.788 133.667 177.778C138.288 163.74 142.588 149.928 149.667 136.889C157.571 122.328 166.644 108.57 176.444 95.2222C184.378 84.4169 189.019 78.256 202.611 79.0556C210.029 79.4919 201.96 100.553 200.556 103.111C194.636 113.894 185.594 121.396 175.333 127.889C167.483 132.857 156.906 135.241 150.333 142C144.059 148.452 137.796 169.856 150.556 173.722C159.077 176.305 172.627 167.51 173 158.556C173.054 157.249 173.315 151.022 170.556 151.833C167.704 152.672 164.625 162.677 163.5 165C162.059 167.975 156.346 175.462 159.556 178.778C164.93 184.332 176.196 181.433 182.111 178.889C188.523 176.131 195.078 172.383 197.833 165.667C198.357 164.39 198.942 159.327 196.944 162.722C194.538 166.813 188.267 178.264 192.889 182.556C197.54 186.875 207.445 184.486 212.556 182.944C232.3 176.987 243.778 163.653 253.889 146.389C259.405 136.97 267.814 125.526 269.778 114.444C270.967 107.735 264.138 114.885 262.889 116.333C252.978 127.827 246.06 142.155 240.111 156C238.073 160.742 234.446 167.563 236 173C237.57 178.494 257.538 164.099 260.111 162C262.105 160.374 265.01 154.983 263 159.722C261.366 163.574 259.424 168.151 260.111 172.389C261.279 179.589 268.66 179.227 272.778 174C274.026 172.416 273.203 172.416 273.056 174.333C272.503 181.512 274.95 188.877 279.111 194.667C289.157 208.643 305.265 194.393 317.111 190.444C320.859 189.195 316.607 192.598 315 193"
+            stroke="black"
+            stroke-width="3"
+            stroke-linecap="round"
+          />
+        </svg>
       </Flex>
     </Box>
   );

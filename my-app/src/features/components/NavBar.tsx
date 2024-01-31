@@ -1,5 +1,4 @@
 import { Box, Button, Flex, Text, useBreakpointValue } from "@chakra-ui/react";
-import Link from "next/link";
 import { useRouter } from "next/router";
 
 export const NavBar = () => {
@@ -21,7 +20,7 @@ export const NavBar = () => {
       bg="white"
       left="0"
       right="0"
-      boxShadow="#9452ff 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;"
+      boxShadow="gray 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;"
     >
       <Box
         display="flex"
@@ -36,8 +35,8 @@ export const NavBar = () => {
           textAlign="center"
           fontSize="x-large"
         >
-          <span style={{ color: "#9252ff" }}>A</span>nkit{" "}
-          <span style={{ color: "#9452ff" }}>P</span>atil
+          <span style={{ color: "black" }}>A</span>nkit{" "}
+          <span style={{ color: "black" }}>P</span>atil
         </Text>
       </Box>
       {!isMobile && (
@@ -52,13 +51,13 @@ export const NavBar = () => {
             "Contact",
           ].map((el) => {
             return (
-              <Link key={el} href={`/${el !== "Home" ? el.toLowerCase() : ""}`}>
                 <Button
+                 key={el}
                   py={0}
                   bg={"white"}
                   _hover={{
                     borderBottom: "3px solid",
-                    borderBottomColor: "brand.primary",
+                    borderBottomColor: "brand.font",
                   }}
                   px={1}
                   borderBottom={
@@ -68,13 +67,13 @@ export const NavBar = () => {
                       : "none"
                   }
                   borderRadius="0"
-                  borderBottomColor="brand.primary"
+                  borderBottomColor="brand.font"
                 >
                   <Text
                     color={
                       `/${el.toLowerCase()}` === router.pathname ||
                       (router.pathname === "/" && el === "Home")
-                        ? "brand.primary"
+                        ? "black"
                         : "brand.font"
                     }
                     fontSize="large"
@@ -82,7 +81,7 @@ export const NavBar = () => {
                     {el}
                   </Text>
                 </Button>
-              </Link>
+             
             );
           })}
         </Flex>
