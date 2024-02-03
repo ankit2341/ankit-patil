@@ -15,7 +15,8 @@ export const theme = extendTheme({
     brand: {
       background: "rgba(246, 244, 250, 1)",
       backgroundDark: "rgb(240, 237, 246, 1)",
-      primary: "rgba(148, 82, 255, 1)",
+      // primary: "rgba(148, 82, 255, 1)",
+      primary: "black",
       font: fontColor,
       fontLight: fontColorLight,
       500: "rgba(148, 82, 255, 1)",

@@ -9,7 +9,7 @@ export const ScreenLayout = ({ children }: ScreenLayoutProps) => {
   return (
     <Box className="area">
       {children}
-      <UnorderedList className="circles">
+      <UnorderedList filter={"blur(10px)"} className="circles">
         <ListItem></ListItem>
         <ListItem></ListItem>
         <ListItem></ListItem>

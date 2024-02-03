@@ -1,8 +1,8 @@
-import { Box, Button, Flex, Text, useBreakpointValue } from "@chakra-ui/react";
-import { useRouter } from "next/router";
+import { Box, Flex, Text, useBreakpointValue } from "@chakra-ui/react";
+// import { useRouter } from "next/router";
 
 export const NavBar = () => {
-  const router = useRouter();
+  // const router = useRouter();
   const isMobile = useBreakpointValue({
     base: true,
     sm: false,
@@ -18,10 +18,9 @@ export const NavBar = () => {
         height="10vh"
         position="fixed"
         top="0"
-        bg="white"
         left="0"
         right="0"
-        boxShadow="gray 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;"
+        // boxShadow="gray 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;"
       >
         <Box
           display="flex"
@@ -33,6 +32,7 @@ export const NavBar = () => {
           <Text
             className="title_text"
             fontWeight="bold"
+            color={"gray"}
             textAlign="center"
             fontSize="x-large"
           >
@@ -52,36 +52,9 @@ export const NavBar = () => {
               "Contact",
             ].map((el) => {
               return (
-                <Button
-                  key={el}
-                  py={0}
-                  bg={"white"}
-                  _hover={{
-                    borderBottom: "3px solid",
-                    borderBottomColor: "brand.font",
-                  }}
-                  px={1}
-                  borderBottom={
-                    router.pathname === `/${el.toLowerCase()}` ||
-                    (router.pathname === "/" && el === "Home")
-                      ? "3px solid"
-                      : "none"
-                  }
-                  borderRadius="0"
-                  borderBottomColor="brand.font"
-                >
-                  <Text
-                    color={
-                      `/${el.toLowerCase()}` === router.pathname ||
-                      (router.pathname === "/" && el === "Home")
-                        ? "black"
-                        : "brand.font"
-                    }
-                    fontSize="large"
-                  >
-                    {el}
-                  </Text>
-                </Button>
+                <Text key={el} fontSize="large">
+                  {el}
+                </Text>
               );
             })}
           </Flex>
