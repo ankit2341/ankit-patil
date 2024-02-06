@@ -1,8 +1,9 @@
 import { Box, Flex, Text, useBreakpointValue } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 // import { useRouter } from "next/router";
 
 export const NavBar = () => {
-  // const router = useRouter();
+  const router = useRouter();
   const isMobile = useBreakpointValue({
     base: true,
     sm: false,
@@ -10,6 +11,7 @@ export const NavBar = () => {
     lg: false,
     xl: false,
   });
+
   return (
     <>
       <Flex
@@ -18,9 +20,9 @@ export const NavBar = () => {
         height="10vh"
         position="fixed"
         top="0"
+        zIndex={1000}
         left="0"
         right="0"
-        // boxShadow="gray 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;"
       >
         <Box
           display="flex"
@@ -52,9 +54,18 @@ export const NavBar = () => {
               "Contact",
             ].map((el) => {
               return (
-                <Text key={el} fontSize="large">
-                  {el}
-                </Text>
+                <Box
+                  key={el}
+                  cursor="pointer"
+                  p={3}
+                  onClick={() =>
+                    router.push(`/${el === "Home" ? "" : el.toLowerCase()}`)
+                  }
+                >
+                  <Text key={el} fontSize="large">
+                    {el}
+                  </Text>
+                </Box>
               );
             })}
           </Flex>

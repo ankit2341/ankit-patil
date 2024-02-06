@@ -13,9 +13,10 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { faBolt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Marquee from "react-fast-marquee";
 import { NavBar } from "src/features/components/NavBar";
+import { motion } from "framer-motion";
 
 export default function Skills() {
   const frontendIcons = [
@@ -69,84 +70,115 @@ export default function Skills() {
       value: faJira,
     },
   ];
+
+  const [isActive, setIsActive] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsActive(false);
+    }, 1100);
+  }, []);
+
+  const variants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+  };
+
+  if (isActive) {
+    return (
+      <Box
+        width={"100%"}
+        height={"100vh"}
+        bg={"black"}
+        className="chevron-enter-active"
+      ></Box>
+    );
+  }
+
   return (
     <>
-      {" "}
-      <NavBar />{" "}
-      <VStack
-        width="100%"
-        height="90vh"
-        alignItems="center"
-        justifyContent="space-evenly"
+      <NavBar />
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={variants}
+        transition={{ duration: 0.5 }}
       >
-        <Divider colorScheme="blackAlpha" />
-        <Text
+        <VStack
           width="100%"
-          px={"5"}
-          textAlign="center"
-          fontSize="x-large"
-          fontWeight="bolder"
+          height="90vh"
+          alignItems="center"
+          justifyContent="space-evenly"
         >
-          Frontend Skills
-        </Text>{" "}
-        <Marquee autoFill>
-          {frontendIcons?.map((el, I) => {
-            return (
-              <Box mx={5} p={5} borderRadius={"md"} key={I}>
-                <FontAwesomeIcon size="5x" icon={el.value} />
-                <Text pt={1} textAlign="center" fontWeight="bold">
-                  {el.name}
-                </Text>{" "}
-              </Box>
-            );
-          })}
-        </Marquee>
-        <Divider />
-        <Text
-          width="100%"
-          px={"5"}
-          textAlign="center"
-          fontSize="x-large"
-          fontWeight="bolder"
-        >
-          Backend Skills
-        </Text>{" "}
-        <Marquee autoFill direction="right">
-          {backendIcons?.map((el, I) => {
-            return (
-              <Box mx={5} p={5} borderRadius={"md"} key={I}>
-                <FontAwesomeIcon size="5x" icon={el.value} />
-                <Text pt={1} textAlign="center" fontWeight="bold">
-                  {el.name}
-                </Text>{" "}
-              </Box>
-            );
-          })}
-        </Marquee>
-        <Divider />
-        <Text
-          width="100%"
-          px={"5"}
-          textAlign="center"
-          fontSize="x-large"
-          fontWeight="bolder"
-        >
-          Tools
-        </Text>{" "}
-        <Marquee autoFill>
-          {toolsIcons?.map((el, I) => {
-            return (
-              <Box mx={5} p={5} borderRadius={"md"} key={I}>
-                <FontAwesomeIcon size="5x" icon={el.value} />
-                <Text pt={1} textAlign="center" fontWeight="bold">
-                  {el.name}
-                </Text>{" "}
-              </Box>
-            );
-          })}
-        </Marquee>
-        <Divider />
-      </VStack>
+          <Divider colorScheme="blackAlpha" />
+          <Text
+            width="100%"
+            px={"5"}
+            textAlign="center"
+            fontSize="x-large"
+            fontWeight="bolder"
+          >
+            Frontend Skills
+          </Text>{" "}
+          <Marquee autoFill>
+            {frontendIcons?.map((el, I) => {
+              return (
+                <Box mx={5} p={5} borderRadius={"md"} key={I}>
+                  <FontAwesomeIcon size="5x" icon={el.value} />
+                  <Text pt={1} textAlign="center" fontWeight="bold">
+                    {el.name}
+                  </Text>{" "}
+                </Box>
+              );
+            })}
+          </Marquee>
+          <Divider />
+          <Text
+            width="100%"
+            px={"5"}
+            textAlign="center"
+            fontSize="x-large"
+            fontWeight="bolder"
+          >
+            Backend Skills
+          </Text>{" "}
+          <Marquee autoFill direction="right">
+            {backendIcons?.map((el, I) => {
+              return (
+                <Box mx={5} p={5} borderRadius={"md"} key={I}>
+                  <FontAwesomeIcon size="5x" icon={el.value} />
+                  <Text pt={1} textAlign="center" fontWeight="bold">
+                    {el.name}
+                  </Text>{" "}
+                </Box>
+              );
+            })}
+          </Marquee>
+          <Divider />
+          <Text
+            width="100%"
+            px={"5"}
+            textAlign="center"
+            fontSize="x-large"
+            fontWeight="bolder"
+          >
+            Tools
+          </Text>{" "}
+          <Marquee autoFill>
+            {toolsIcons?.map((el, I) => {
+              return (
+                <Box mx={5} p={5} borderRadius={"md"} key={I}>
+                  <FontAwesomeIcon size="5x" icon={el.value} />
+                  <Text pt={1} textAlign="center" fontWeight="bold">
+                    {el.name}
+                  </Text>{" "}
+                </Box>
+              );
+            })}
+          </Marquee>
+          <Divider />
+        </VStack>
+      </motion.div>
     </>
   );
 }

@@ -32,7 +32,12 @@ export default function Home() {
   });
 
   return (
-    <Box w="100vw" position={"absolute"} zIndex={1000}>
+    <Box
+      w="100vw"
+      position={"absolute"}
+      zIndex={1000}
+      className="spotlight-enter-active"
+    >
       <NavBar />
       <Flex
         width="100%"
@@ -87,6 +92,7 @@ export default function Home() {
           flexDir="column"
           height={isMobile ? "45vh" : "90vh"}
           p={"4"}
+          pb={isMobile ? "10" : "0"}
         >
           <VStack width="100%" height="100%">
             {isMobile ? (
