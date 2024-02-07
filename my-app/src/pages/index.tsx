@@ -57,9 +57,9 @@ export default function Home() {
           <Text fontSize={"x-large"}>I am a</Text>
           <ReactTyped
             style={{
-              fontSize: isTablet?"40px":isMobile ? "25px" : "50px",
+              fontSize: isTablet ? "40px" : isMobile ? "25px" : "50px",
               textAlign: "center",
-              fontWeight:"bold"
+              fontWeight: "bold",
             }}
             loop
             strings={[
@@ -79,7 +79,7 @@ export default function Home() {
               bg: "white",
               border: "1px solid",
             }}
-            width={"50%"}
+            width={isMobile ? "80%" : "50%"}
             borderRadius="full"
             px={10}
             py={6}
@@ -128,10 +128,10 @@ export default function Home() {
                   bottom="4%"
                   left={"15%"}
                   as={SignatureLogo}
-                  width={ 150}
-                  height={ 150}
+                  width={150}
+                  height={150}
                 />
-              ) :isMobile? (
+              ) : isMobile ? (
                 <Icon
                   position="absolute"
                   bottom="4%"
@@ -139,13 +139,15 @@ export default function Home() {
                   width={isMobile ? 150 : 200}
                   height={isMobile ? 150 : 200}
                 />
-              ): <Icon
-              position="absolute"
-              bottom="0%"
-              as={SignatureLogo}
-              width={isMobile ? 150 : 200}
-              height={isMobile ? 150 : 200}
-            />}
+              ) : (
+                <Icon
+                  position="absolute"
+                  bottom="0%"
+                  as={SignatureLogo}
+                  width={isMobile ? 150 : 200}
+                  height={isMobile ? 150 : 200}
+                />
+              )}
             </Box>
           </VStack>
         </Flex>
