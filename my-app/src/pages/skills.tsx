@@ -1,4 +1,10 @@
-import { Box, Divider, Text, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  Divider,
+  Text,
+  VStack,
+  useBreakpointValue,
+} from "@chakra-ui/react";
 import {
   faAws,
   faBootstrap,
@@ -70,6 +76,13 @@ export default function Skills() {
       value: faJira,
     },
   ];
+  const isMobile = useBreakpointValue({
+    base: true,
+    sm: true,
+    md: true,
+    lg: true,
+    xl: false,
+  });
 
   const [isActive, setIsActive] = useState(true);
 
@@ -123,8 +136,20 @@ export default function Skills() {
           <Marquee autoFill>
             {frontendIcons?.map((el, I) => {
               return (
-                <Box mx={5} p={5} borderRadius={"md"} key={I}>
-                  <FontAwesomeIcon size="5x" icon={el.value} />
+                <Box
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  flexDir={"column"}
+                  mx={isMobile ? 2 : 5}
+                  p={5}
+                  borderRadius={"md"}
+                  key={I}
+                >
+                  <FontAwesomeIcon
+                    size={isMobile ? "3x" : "4x"}
+                    icon={el.value}
+                  />
                   <Text pt={1} textAlign="center" fontWeight="bold">
                     {el.name}
                   </Text>{" "}
@@ -145,8 +170,20 @@ export default function Skills() {
           <Marquee autoFill direction="right">
             {backendIcons?.map((el, I) => {
               return (
-                <Box mx={5} p={5} borderRadius={"md"} key={I}>
-                  <FontAwesomeIcon size="5x" icon={el.value} />
+                <Box
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  flexDir={"column"}
+                  mx={isMobile ? 2 : 5}
+                  p={5}
+                  borderRadius={"md"}
+                  key={I}
+                >
+                  <FontAwesomeIcon
+                    size={isMobile ? "3x" : "4x"}
+                    icon={el.value}
+                  />
                   <Text pt={1} textAlign="center" fontWeight="bold">
                     {el.name}
                   </Text>{" "}
@@ -167,8 +204,20 @@ export default function Skills() {
           <Marquee autoFill>
             {toolsIcons?.map((el, I) => {
               return (
-                <Box mx={5} p={5} borderRadius={"md"} key={I}>
-                  <FontAwesomeIcon size="5x" icon={el.value} />
+                <Box
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  flexDir={"column"}
+                  mx={isMobile ? 2 : 5}
+                  p={5}
+                  borderRadius={"md"}
+                  key={I}
+                >
+                  <FontAwesomeIcon
+                    size={isMobile ? "3x" : "4x"}
+                    icon={el.value}
+                  />
                   <Text pt={1} textAlign="center" fontWeight="bold">
                     {el.name}
                   </Text>{" "}
