@@ -4,6 +4,7 @@ import {
   Flex,
   Icon,
   Image,
+  Text,
   VStack,
   useBreakpointValue,
 } from "@chakra-ui/react";
@@ -48,22 +49,24 @@ export default function Home() {
       >
         <Flex
           width={isMobile ? "100%" : "50%"}
-          height={isMobile ? "45vh" : "90vh"}
+          height={isMobile ? "35vh" : "90vh"}
           flexDir={"column"}
           alignItems="center"
           justifyContent="center"
         >
+          <Text fontSize={"x-large"}>I am a</Text>
           <ReactTyped
             style={{
-              fontSize: isMobile ? "30px" : "50px",
+              fontSize: isTablet?"40px":isMobile ? "25px" : "50px",
               textAlign: "center",
+              fontWeight:"bold"
             }}
             loop
             strings={[
-              "I am a Web Developer",
-              "I am a Full Stack Engineer",
-              "I am a Frontend Engineer",
-              "I am a React Native Developer",
+              "Web Developer",
+              "Full Stack Engineer",
+              "Frontend Engineer",
+              "React Native Developer",
             ]}
             typeSpeed={80}
           />
@@ -76,8 +79,10 @@ export default function Home() {
               bg: "white",
               border: "1px solid",
             }}
+            width={"50%"}
+            borderRadius="full"
             px={10}
-            py={5}
+            py={6}
             color="white"
             bg="brand.primary"
             fontSize="larger"
@@ -90,9 +95,9 @@ export default function Home() {
           alignItems="center"
           justifyContent="center"
           flexDir="column"
-          height={isMobile ? "45vh" : "90vh"}
+          height={isMobile ? "55vh" : "90vh"}
           p={"4"}
-          pb={isMobile ? "10" : "0"}
+          pb={isMobile ? "20" : "0"}
         >
           <VStack width="100%" height="100%">
             {isMobile ? (
@@ -120,21 +125,27 @@ export default function Home() {
               {isTablet ? (
                 <Icon
                   position="absolute"
-                  bottom="0%"
+                  bottom="4%"
                   left={"15%"}
                   as={SignatureLogo}
-                  width={isMobile ? 100 : 200}
-                  height={isMobile ? 100 : 200}
+                  width={ 150}
+                  height={ 150}
                 />
-              ) : (
+              ) :isMobile? (
                 <Icon
                   position="absolute"
-                  bottom="0%"
+                  bottom="4%"
                   as={SignatureLogo}
-                  width={isMobile ? 100 : 200}
-                  height={isMobile ? 100 : 200}
+                  width={isMobile ? 150 : 200}
+                  height={isMobile ? 150 : 200}
                 />
-              )}
+              ): <Icon
+              position="absolute"
+              bottom="0%"
+              as={SignatureLogo}
+              width={isMobile ? 150 : 200}
+              height={isMobile ? 150 : 200}
+            />}
             </Box>
           </VStack>
         </Flex>
