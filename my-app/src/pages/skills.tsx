@@ -121,7 +121,7 @@ export default function Skills() {
           width="100%"
           height="90vh"
           alignItems="center"
-          justifyContent="space-evenly"
+          justifyContent={isMobile ? "space-around" : "space-evenly"}
         >
           <Divider colorScheme="blackAlpha" />
           <Text

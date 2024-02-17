@@ -236,11 +236,27 @@
       -100% 0%
     );
   }
+  35% {
+    clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);
+  }
+  50% {
+    clip-path: polygon(100% 0%, 100% 50%, 100% 100%, 0% 100%, 0% 50%, 0% 0%);
+  }
+  51% {
+    clip-path: polygon(100% 0%, 100% 50%, 100% 100%, 0% 100%, 0% 50%, 0% 0%);
+  }
   75% {
     clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);
   }
   100% {
-    clip-path: polygon(100% 0%, 100% 50%, 100% 100%, 0% 100%, 0% 50%, 0% 0%);
+    clip-path: polygon(
+      175% 0%,
+      200% 50%,
+      175% 100%,
+      100% 100%,
+      125% 50%,
+      100% 0%
+    );
   }
 }
 
@@ -285,5 +301,37 @@
   }
   100% {
     clip-path: circle(20% at -30% 20%);
+  }
+}
+
+@keyframes circle-out-center {
+  from {
+    clip-path: circle(125%);
+  }
+  to {
+    clip-path: circle(0%);
+  }
+}
+
+.circle-out-center {
+  animation: 1s cubic-bezier(0.25, 1, 0.3, 1) circle-out-center both;
+}
+
+.down-enter-active {
+  animation: 1s down-enter;
+}
+
+@keyframes down-enter {
+  0% {
+    clip-path: inset(0 0 100% 0);
+  }
+  50% {
+    clip-path: inset(0);
+  }
+  75% {
+    clip-path: inset(0);
+  }
+  100% {
+    clip-path: inset(100% 0 0 0);
   }
 }
