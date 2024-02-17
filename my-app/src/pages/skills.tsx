@@ -89,7 +89,7 @@ export default function Skills() {
   useEffect(() => {
     setTimeout(() => {
       setIsActive(false);
-    }, 1100);
+    }, 800);
   }, []);
 
   const variants = {
@@ -103,7 +103,7 @@ export default function Skills() {
         width={"100%"}
         height={"100vh"}
         bg={"black"}
-        className="chevron-enter-active"
+        className="slots-enter-active"
       ></Box>
     );
   }

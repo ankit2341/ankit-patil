@@ -1,6 +1,20 @@
-import { Box, Flex, HStack, Text, useBreakpointValue } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  HStack,
+  IconButton,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Text,
+  VStack,
+  useBreakpointValue,
+} from "@chakra-ui/react";
 import { faSuperpowers } from "@fortawesome/free-brands-svg-icons";
 import {
+  faBars,
   faDownload,
   faHeadphonesSimple,
   faHouse,
@@ -76,9 +90,61 @@ export const NavBar = () => {
             display="flex"
             alignItems="center"
             justifyContent="left"
-            width="39%"
+            width={isMobile ? "100%" : "39%"}
             height="100%"
           >
+            {isMobile && (
+              <Menu>
+                <MenuButton
+                  as={IconButton}
+                  aria-label="Options"
+                  icon={<FontAwesomeIcon icon={faBars} />}
+                  variant="outline"
+                />
+                <MenuList>
+                  {navElements.map((el) => {
+                    return (
+                      <MenuItem width="100%" key={el.name}>
+                        <HStack
+                          width="100%"
+                          key={el.name}
+                          cursor="pointer"
+                          alignItems="center"
+                          justifyContent="left"
+                          px={3}
+                          py={2}
+                          borderRadius="full"
+                          borderColor={
+                            el.route !== router.pathname
+                              ? "lightgray"
+                              : "brand.primary"
+                          }
+                          borderWidth={
+                            el.route !== router.pathname ? "2px" : "2px"
+                          }
+                          onClick={() => router.push(el.route)}
+                          _hover={{
+                            borderColor: "brand.primary",
+                            borderWidth: "2px",
+                          }}
+                        >
+                          <FontAwesomeIcon
+                            shake={el.route === "/contact"}
+                            spin={el.route === "/skills"}
+                            fade={el.route === "/projects"}
+                            icon={el.icon}
+                            fill="brand.primary"
+                          />
+                          <Text key={el.name} color="brand.font">
+                            {el.name}
+                          </Text>
+                        </HStack>
+                      </MenuItem>
+                    );
+                  })}
+                </MenuList>
+              </Menu>
+            )}
             <Text
               className="title_text"
               fontWeight="bold"
@@ -132,7 +198,6 @@ export const NavBar = () => {
         </Flex>
         <Box width="100%" height="10vh"></Box>
       </>
-      <Flex></Flex>
     </>
   );
 };
