@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Flex,
   HStack,
   IconButton,
@@ -9,7 +8,6 @@ import {
   MenuItem,
   MenuList,
   Text,
-  VStack,
   useBreakpointValue,
 } from "@chakra-ui/react";
 import { faSuperpowers } from "@fortawesome/free-brands-svg-icons";
