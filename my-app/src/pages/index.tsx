@@ -2,14 +2,17 @@ import {
   Box,
   Button,
   Flex,
+  HStack,
   Icon,
   Image,
   Text,
   VStack,
   useBreakpointValue,
 } from "@chakra-ui/react";
+import { faGithubSquare, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
 import { ReactTyped } from "react-typed";
 import { NavBar } from "src/features/components/NavBar";
 
@@ -70,7 +73,15 @@ export default function Home() {
             ]}
             typeSpeed={80}
           />
-
+          <Text
+            fontSize="md"
+            px={isTablet ? 10 : isMobile ? 4 : 2}
+            textAlign="center"
+          >
+            Mechanical engineer turned full-stack developer with nearly a year
+            of experience, passionate about crafting innovative solutions and
+            staying at the forefront of technology.
+          </Text>
           <Button
             mt={5}
             leftIcon={<FontAwesomeIcon icon={faDownload} />}
@@ -89,6 +100,17 @@ export default function Home() {
           >
             Resume
           </Button>
+          <HStack pt={4} spacing={4}>
+            <Link href={"https://github.com/ankit2341"} target="_blank">
+              <FontAwesomeIcon size="2xl" icon={faGithubSquare} />
+            </Link>
+            <Link
+              href={"https://www.linkedin.com/in/ankit-patil-948036196/"}
+              target="_blank"
+            >
+              <FontAwesomeIcon size="2xl" icon={faLinkedin} />
+            </Link>
+          </HStack>
         </Flex>
         <Flex
           width={isMobile ? "100%" : "50%"}

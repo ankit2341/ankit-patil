@@ -10,17 +10,22 @@ import {
   Text,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import { faSuperpowers } from "@fortawesome/free-brands-svg-icons";
+import {
+  faGithub,
+  faLinkedin,
+  faSuperpowers,
+} from "@fortawesome/free-brands-svg-icons";
 import {
   faBars,
   faDownload,
+  faEnvelope,
   faHeadphonesSimple,
   faHouse,
   faLightbulb,
-  faUser,
-  faUserTie,
+  // faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
 import { useRouter } from "next/router";
 
 export const NavBar = () => {
@@ -39,11 +44,11 @@ export const NavBar = () => {
       route: "/",
       icon: faHouse,
     },
-    {
-      name: "About",
-      route: "/about",
-      icon: faUser,
-    },
+    // {
+    //   name: "About",
+    //   route: "/about",
+    //   icon: faUser,
+    // },
     {
       name: "Resume",
       route: "/resume",
@@ -59,16 +64,11 @@ export const NavBar = () => {
       route: "/projects",
       icon: faLightbulb,
     },
-    {
-      name: "Experience",
-      route: "/experience",
-      icon: faUserTie,
-    },
-    {
-      name: "Contact",
-      route: "/contact",
-      icon: faHeadphonesSimple,
-    },
+    // {
+    //   name: "Experience",
+    //   route: "/experience",
+    //   icon: faUserTie,
+    // },
   ];
 
   return (
@@ -155,10 +155,11 @@ export const NavBar = () => {
             </Text>
           </Box>
           {!isMobile && (
-            <Flex width="59%" alignItems="center" justifyContent="space-evenly">
+            <Flex width="59%" alignItems="center" justifyContent="right">
               {navElements.map((el) => {
                 return (
                   <HStack
+                    mx={2}
                     key={el.name}
                     cursor="pointer"
                     alignItems="center"
@@ -191,6 +192,58 @@ export const NavBar = () => {
                   </HStack>
                 );
               })}
+              <Menu>
+                <MenuButton>
+                  <HStack
+                    cursor="pointer"
+                    alignItems="center"
+                    justifyContent="space-between"
+                    px={3}
+                    py={2}
+                    mx={1}
+                    borderRadius="full"
+                    borderColor={"lightgray"}
+                    borderWidth={"2px"}
+                    _hover={{
+                      borderColor: "brand.primary",
+                      borderWidth: "2px",
+                    }}
+                  >
+                    <FontAwesomeIcon
+                      icon={faHeadphonesSimple}
+                      fill="brand.primary"
+                    />
+                    <Text color="brand.font">Contact</Text>
+                  </HStack>
+                </MenuButton>
+                <MenuList p={3}>
+                  <Link href={"https://github.com/ankit2341"} target="_blank">
+                    <MenuItem>
+                      <HStack>
+                        <FontAwesomeIcon icon={faGithub} />
+                        <Text>Github</Text>
+                      </HStack>
+                    </MenuItem>
+                  </Link>
+                  <Link
+                    href={"https://www.linkedin.com/in/ankit-patil-948036196/"}
+                    target="_blank"
+                  >
+                    <MenuItem>
+                      <HStack>
+                        <FontAwesomeIcon icon={faLinkedin} />
+                        <Text>LinkedIn</Text>
+                      </HStack>
+                    </MenuItem>
+                  </Link>
+                  <MenuItem>
+                    <HStack>
+                      <FontAwesomeIcon icon={faEnvelope} />
+                      <Text>ankitpatil2341@gmail.com</Text>
+                    </HStack>
+                  </MenuItem>
+                </MenuList>
+              </Menu>
             </Flex>
           )}
         </Flex>

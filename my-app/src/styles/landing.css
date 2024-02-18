@@ -401,3 +401,34 @@
     );
   }
 }
+
+.box-wipe-enter-active {
+  animation: 1s box-wipe-enter;
+}
+.box-wipe-leave-active {
+  animation: 1s box-wipe-leave;
+}
+
+@keyframes box-wipe-enter {
+  0% {
+    clip-path: inset(25% 100% 25% -50%);
+  }
+  50% {
+    clip-path: inset(25% 0% 25% 50%);
+  }
+  100% {
+    clip-path: inset(0);
+  }
+}
+
+@keyframes box-wipe-leave {
+  0% {
+    clip-path: inset(0);
+  }
+  50% {
+    clip-path: inset(25% 50% 25% 0%);
+  }
+  100% {
+    clip-path: inset(25% -50% 25% 100%);
+  }
+}
