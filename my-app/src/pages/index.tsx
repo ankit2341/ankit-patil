@@ -73,7 +73,7 @@ export default function Home() {
             ]}
             typeSpeed={80}
           />
-          <Text
+         {<Text
             fontSize="md"
             px={isTablet ? 10 : isMobile ? 4 : 2}
             textAlign="center"
@@ -81,7 +81,7 @@ export default function Home() {
             Mechanical engineer turned full-stack developer with nearly a year
             of experience, passionate about crafting innovative solutions and
             staying at the forefront of technology.
-          </Text>
+          </Text>}
           <Button
             mt={5}
             leftIcon={<FontAwesomeIcon icon={faDownload} />}

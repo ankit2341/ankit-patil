@@ -37,6 +37,13 @@ export const NavBar = () => {
     lg: false,
     xl: false,
   });
+  const isTablet = useBreakpointValue({
+    base: false,
+    sm: false,
+    md: true,
+    lg: true,
+    xl: false,
+  });
 
   const navElements = [
     {
@@ -91,7 +98,7 @@ export const NavBar = () => {
             width={isMobile ? "100%" : "39%"}
             height="100%"
           >
-            {isMobile && (
+            {(isMobile||isTablet) && (
               <Menu>
                 <MenuButton
                   as={IconButton}
@@ -148,13 +155,14 @@ export const NavBar = () => {
               fontWeight="bold"
               color={"gray"}
               textAlign="center"
+              pl={4}
               fontSize="x-large"
             >
               <span style={{ color: "black" }}>A</span>nkit{" "}
               <span style={{ color: "black" }}>P</span>atil
             </Text>
           </Box>
-          {!isMobile && (
+          {!isMobile&&!isTablet && (
             <Flex width="59%" alignItems="center" justifyContent="right">
               {navElements.map((el) => {
                 return (
