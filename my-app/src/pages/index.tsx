@@ -73,15 +73,17 @@ export default function Home() {
             ]}
             typeSpeed={80}
           />
-         {<Text
-            fontSize="md"
-            px={isTablet ? 10 : isMobile ? 4 : 2}
-            textAlign="center"
-          >
-            Mechanical engineer turned full-stack developer with nearly a year
-            of experience, passionate about crafting innovative solutions and
-            staying at the forefront of technology.
-          </Text>}
+          {!isMobile && (
+            <Text
+              fontSize="md"
+              px={isTablet ? 10 : isMobile ? 4 : 2}
+              textAlign="center"
+            >
+              Mechanical engineer turned full-stack developer with nearly a year
+              of experience, passionate about crafting innovative solutions and
+              staying at the forefront of technology.
+            </Text>
+          )}
           <Button
             mt={5}
             leftIcon={<FontAwesomeIcon icon={faDownload} />}
@@ -92,6 +94,7 @@ export default function Home() {
             }}
             width={isMobile ? "80%" : "50%"}
             borderRadius="full"
+            border={"1px solid"}
             px={10}
             py={6}
             color="white"

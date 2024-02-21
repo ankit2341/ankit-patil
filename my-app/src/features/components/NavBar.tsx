@@ -32,7 +32,7 @@ export const NavBar = () => {
   const router = useRouter();
   const isMobile = useBreakpointValue({
     base: true,
-    sm: false,
+    sm: true,
     md: false,
     lg: false,
     xl: false,
@@ -98,7 +98,7 @@ export const NavBar = () => {
             width={isMobile ? "100%" : "39%"}
             height="100%"
           >
-            {(isMobile||isTablet) && (
+            {(isMobile || isTablet) && (
               <Menu>
                 <MenuButton
                   as={IconButton}
@@ -162,7 +162,7 @@ export const NavBar = () => {
               <span style={{ color: "black" }}>P</span>atil
             </Text>
           </Box>
-          {!isMobile&&!isTablet && (
+          {!isMobile && !isTablet && (
             <Flex width="59%" alignItems="center" justifyContent="right">
               {navElements.map((el) => {
                 return (
