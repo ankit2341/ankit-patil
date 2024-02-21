@@ -25,6 +25,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
     <ChakraProvider theme={theme}>
       <Head>
         <title>Ankit Patil</title>
+        <link rel="icon" href="https://i.postimg.cc/JhJGkwy4/profile-sketch-cropped.jpg" />
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta name="description" content="Ankit Patil portfolio" />
       </Head>
